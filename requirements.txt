@@ -1,0 +1,9 @@
+hydra-core
+jupyter
+matplotlib
+pandas
+scikit-learn
+streamlit
+torch
+transformers
+wandb
