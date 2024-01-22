@@ -1,5 +1,5 @@
-hydra-core
 jupyter
+mapboxgl
 matplotlib
 pandas
 scikit-learn
