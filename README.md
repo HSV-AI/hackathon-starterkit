@@ -31,4 +31,5 @@ There are example notebooks in the notebooks directory that include:
 - Displaying geographic data
 - NLP topic modeling
 - Scikit Learn for Classification
+- Iris Dataset Classification with scikit-learn
 
