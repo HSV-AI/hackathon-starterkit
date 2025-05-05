@@ -1,0 +1,39 @@
+name: OpenHands Issue Responder
+
+on:
+  issues:
+    types: [labeled]
+
+jobs:
+  respond:
+    if: ${{ github.event.label.name == 'fixme' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Generate response
+        id: generate_response
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          echo "Generating response via OpenAI..."
+          RESPONSE=$(curl -s https://api.openai.com/v1/chat/completions \
+            -H "Content-Type: application/json" \
+            -H "Authorization: Bearer $OPENAI_API_KEY" \
+            -d '{
+              "model": "gpt-4",
+              "messages": [
+                {"role": "system", "content": "You are OpenHands, an AI assistant for the repository. Provide a helpful comment for this GitHub issue."},
+                {"role": "user", "content": "Issue Title: ${{ github.event.issue.title }}\n\n${{ github.event.issue.body }}"}
+              ]
+            }' | jq -r '.choices[0].message.content')
+          # Output for GitHub Actions
+          echo "comment<<EOF" >> $GITHUB_OUTPUT
+          echo "$RESPONSE" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Comment on the issue
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ github.event.issue.number }}
+          body: ${{ steps.generate_response.outputs.comment }}
