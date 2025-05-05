@@ -32,3 +32,8 @@ There are example notebooks in the notebooks directory that include:
 - NLP topic modeling
 - Scikit Learn for Classification
 
+
+## OpenHands Code Agent
+
+This repository includes the OpenHands Code Agent, an AI-powered assistant that can help work on issues. Whenever there is an open issue, the Code Agent can analyze the problem, propose changes, and open pull requests with fixes. You can monitor its progress in the GitHub Actions workflow runs for this repository.
+
