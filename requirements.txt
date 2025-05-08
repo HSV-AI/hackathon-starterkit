@@ -7,3 +7,6 @@ streamlit
 torch
 transformers
 wandb
+gradio
+pillow
+pytest
