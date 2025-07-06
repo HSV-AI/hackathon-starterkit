@@ -38,3 +38,5 @@ There are example notebooks in the notebooks directory that include:
 
 This repository includes the OpenHands Code Agent, an AI-powered assistant that can help work on issues. Whenever there is an open issue, the Code Agent can analyze the problem, propose changes, and open pull requests with fixes. You can monitor its progress in the GitHub Actions workflow runs for this repository.
 
+@hsv-ai-agent is the account used for all automated agentic workflows for the Huntsville AI GitHub organization.
+
